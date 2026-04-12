@@ -1,0 +1,64 @@
+#include <Arduino.h>
+
+// a0 = 0.055391 (Ofset)
+// a1 = 0.000929 (Eğim)
+// a2 = -3.26e-8 (Doğrusalsızlık)
+const float a0 = 0.055391f;
+const float a1 = 0.000929f;
+const float a2 = -0.0000000326f;
+
+// ADC2 Pinleri
+const int NUM_NODES = 6;
+int adcPins[NUM_NODES] = {25, 26, 27, 14, 12, 13};
+
+// Kalibrasyon Fonksiyonu: Polinom Hesabı
+float calibrateADC2(int raw) {
+  float x = (float)raw;
+  return a0 + (a1 * x) + (a2 * x * x);
+}
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+
+  // ADC Ayarları
+  analogReadResolution(12);
+  analogSetAttenuation(ADC_11db);
+
+  Serial.println("--- ADC2 KALIBRASYON TESTI BASLIYOR ---");
+  Serial.println("Node\tGPIO\tRaw(x)\tV_Linear(Hatalı)\tV_Calibrated(Düzeltilmiş)");
+}
+
+void loop() {
+  const float VREF = 3.30; 
+
+  for (int k = 0; k < NUM_NODES; ++k) {
+    long sum = 0;
+    // 50 örnek alıp ortalama bulalım
+    for (int n = 0; n < 50; ++n) {
+      sum += analogRead(adcPins[k]);
+      delay(2);
+    }
+    float raw = sum / 50.0f;
+
+    // 1. ESKİ YÖNTEM 
+    float V_linear = raw * (VREF / 4095.0f); 
+
+    // 2. YENİ YÖNTEM 
+    float V_calibrated = calibrateADC2((int)raw); 
+
+    // Sonuçları Yazdır
+    Serial.print(k);
+    Serial.print("\t");
+    Serial.print(adcPins[k]);
+    Serial.print("\t");
+    Serial.print(raw, 1);
+    Serial.print("\t");
+    Serial.print(V_linear, 4);      
+    Serial.print("\t\t");
+    Serial.println(V_calibrated, 4); 
+  }
+  
+  Serial.println("---------------------------------------------------------------");
+  delay(2000);
+}

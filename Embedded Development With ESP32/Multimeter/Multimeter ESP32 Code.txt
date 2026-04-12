@@ -1,0 +1,99 @@
+const int VOLTAGE_PIN = 34;     // ADC pin for Voltage (V) measurement
+const int RESISTANCE_PIN = 35;  // ADC pin for Resistance (R) measurement (Voltage Divider midpoint)
+const int CURRENT_PIN = 26;     // ADC pin for Current (A) measurement (Directly from 100 Ohm shunt)
+const float R_REFERENCE = 1000.0; // <<< UPDATED FROM 10000.0
+const float R_SHUNT = 1000.0; 
+const float ADC_RESOLUTION = 4095.0; // 12-bit
+const float V_IN = 3.3;              // ADC Reference Voltage
+char currentMode = 'V'; // Default mode
+String serialCommand;   // Stores the command from Python
+
+void setup() {
+  Serial.begin(115200); // Initialize serial communication
+  pinMode(VOLTAGE_PIN, INPUT);
+  pinMode(RESISTANCE_PIN, INPUT);
+  pinMode(CURRENT_PIN, INPUT);
+}
+
+void loop() {
+  checkSerialCommands();
+  switch (currentMode) {
+    case 'V':
+      measureVoltage();
+      break;
+    case 'A':
+      measureCurrent();
+      break;
+    case 'R':
+      measureResistance();
+      break;
+  }
+  
+  // Measurement frequency (adjustable)
+  delay(150); 
+}
+
+void measureVoltage() {
+  int rawADC = analogRead(VOLTAGE_PIN);
+  float voltage = (rawADC / ADC_RESOLUTION) * V_IN;
+  Serial.print("V:");
+  Serial.println(voltage, 3); // 3 decimal places precision
+}
+
+void measureResistance() {
+  int rawADC = analogRead(RESISTANCE_PIN);
+  float v_out = (rawADC / ADC_RESOLUTION) * V_IN;
+
+  // Prevent division by zero (or if v_out is very low)
+  if (v_out < 0.01) { 
+    Serial.println("R:INF"); // Infinite resistance (Open Circuit)
+    return;
+  }
+  
+  // Check if v_out is too close to 3.3V (low Rx or short circuit)
+  if (v_out > (V_IN * 0.99)) {
+    Serial.println("R:0.0"); // Resistance near zero (Short Circuit)
+    return;
+  }
+
+  // Voltage Divider Formula: R_unknown = R_ref * (V_in - V_out) / V_out
+  float r_unknown = R_REFERENCE * v_out / (V_IN - v_out);
+
+  Serial.print("R:");
+  Serial.println(r_unknown, 1);
+}
+
+void measureCurrent() {
+  // 1. Read the voltage (V_shunt) directly from the 100 Ohm shunt
+  // (Expecting max 1.5V for 15mA)
+  int rawADC = analogRead(CURRENT_PIN);
+  float v_shunt = (rawADC / ADC_RESOLUTION) * V_IN;
+  
+  // 2. Calculate current using Ohm's Law (I = V/R)
+  // I = V_shunt / R_shunt (R_shunt = 100)
+  float current = v_shunt / R_SHUNT;
+  
+  // Filter out measurement noise (negative values)
+  if (current < 0.0001) {
+    current = 0.0;
+  }
+
+  Serial.print("A:");
+  Serial.println(current, 4); // 4 decimal places for mA accuracy (e.g., 0.0125 A)
+}
+
+void checkSerialCommands() {
+  if (Serial.available() > 0) {
+    serialCommand = Serial.readStringUntil('\n');
+    serialCommand.trim(); // Clean up whitespace
+
+    if (serialCommand == "SET_MODE:V") {
+      currentMode = 'V';
+    } else if (serialCommand == "SET_MODE:A") {
+      currentMode = 'A';
+    } else if (serialCommand == "SET_MODE:R") {
+      currentMode = 'R';
+    }
+    // Unknown commands are ignored
+  }
+}

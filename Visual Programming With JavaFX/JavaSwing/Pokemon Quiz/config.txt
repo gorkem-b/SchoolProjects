@@ -1,0 +1,63 @@
+Pokemon DB:
+            "Sprigatito",
+            "Fuecoco",
+            "Quaxly",
+            "Koraidon",
+            "Miraidon",
+            "Armarouge",
+            "Bellibolt",
+            "Ceruledge",
+            "Cetitan",
+            "Cyclizar",
+            "Farigiraf",
+            "Fidough",
+            "Gimmighoul (Chest Form)",
+            "Grafaiai",
+            "Greavard",
+            "Klawf",
+            "Lechonk",
+            "Paldean Wooper",
+            "Pawmi",
+            "Smoliv",
+            "Wiglett"
+
+Quiz:
+    Dimension: 800 x 800
+
+Banner:
+    Dimension: 600 x 100
+    West: 100
+    North: 25
+
+Question Number Label
+    Font Size: 18
+    West: 100
+    North: 175
+
+Pokemon Image
+    Dimensions: 250 x 250
+    West: 275
+    North: 175
+
+Answer Buttons:
+    GridLayout: 25 vgap x 25 hgap
+    Button Dimensions: 300 x 100
+    Button Font Size: 18
+    West: 80
+    North: 450
+
+Reset Button:
+    Dimension: 60 x 50
+    West: 15
+    North: 50
+
+Next Button:
+    Dimension: 45 x 60
+    West: 725
+    North: 675
+
+Score Count:
+    Font Size: 18
+    West: 350
+    North: 700
+

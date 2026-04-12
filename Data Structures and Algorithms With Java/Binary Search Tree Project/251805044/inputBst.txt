@@ -1,0 +1,21 @@
+12,Milk,24
+37,Bread,30
+45,Eggs,1210
+58,Butter,10
+63,Cheese,23
+79,Chicken Breast,16
+82,Ground Beef,1
+94,Apples,100
+101,Bananas,5
+115,Orange Juice,15
+128,Rice,2
+133,Pasta,40
+142,Tomato Sauce,8
+156,Olive Oil,11
+167,Sugar,18
+173,Salt,45
+184,Coffee,35
+191,Tea Bags,20
+196,Laundry Detergent,14
+200,Toilet Paper,25
+252,Spaceship,1

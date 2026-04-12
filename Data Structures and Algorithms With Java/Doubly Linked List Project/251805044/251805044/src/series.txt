@@ -1,0 +1,8 @@
+8,The Walking Dead,Horror,18+
+1,Friends,Comedy,13+
+4,Stranger Things,Sci-fi,13+
+5,La casa de papel,Thriller,18+
+2,The Good Place,Comedy,18+
+6,Masha and the bear,Cartoon,2+
+3,Breaking Bad,Drama,18+
+7,Paw Petrol,Adventure,5+
