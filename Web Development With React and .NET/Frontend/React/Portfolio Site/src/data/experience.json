@@ -1,0 +1,16 @@
+[
+	{
+		"company": "Company One",
+		"role": "Frontend Engineer",
+		"startDate": "2024-01-01",
+		"endDate": "2025-08-01",
+		"summary": "Led UI performance and accessibility improvements for customer-facing web products."
+	},
+	{
+		"company": "Company Two",
+		"role": "Web Developer",
+		"startDate": "2022-06-01",
+		"endDate": "2023-12-01",
+		"summary": "Built responsive landing pages and internal dashboard interfaces with reusable components."
+	}
+]

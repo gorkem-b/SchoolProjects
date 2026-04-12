@@ -1,0 +1,6 @@
+[
+	{ "name": "Capability A", "level": "Advanced", "icon": "capability-a" },
+	{ "name": "Capability B", "level": "Advanced", "icon": "capability-b" },
+	{ "name": "Capability C", "level": "Advanced", "icon": "capability-c" },
+	{ "name": "Capability D", "level": "Intermediate", "icon": "capability-d" }
+]

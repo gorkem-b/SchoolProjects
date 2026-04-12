@@ -1,0 +1,82 @@
+[
+  {
+    "ContainingType": "Backend.Controllers.PeopleController",
+    "Method": "GetPeople",
+    "RelativePath": "api/People",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.PeopleController",
+    "Method": "AddPerson",
+    "RelativePath": "api/People",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "person",
+        "Type": "Backend.Models.Person",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.PeopleController",
+    "Method": "GetPerson",
+    "RelativePath": "api/People/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "GetPerson"
+  },
+  {
+    "ContainingType": "Backend.Controllers.PeopleController",
+    "Method": "UpdatePerson",
+    "RelativePath": "api/People/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "person",
+        "Type": "Backend.Models.Person",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.PeopleController",
+    "Method": "DeletePerson",
+    "RelativePath": "api/People/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

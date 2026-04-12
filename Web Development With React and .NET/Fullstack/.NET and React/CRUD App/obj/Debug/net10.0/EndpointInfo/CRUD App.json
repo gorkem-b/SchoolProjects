@@ -1,0 +1,199 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "CRUD App | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5118"
+    }
+  ],
+  "paths": {
+    "/api/People": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "People"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/People/{id}": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "operationId": "GetPerson",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "People"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "People"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Person": {
+        "required": [
+          "firstName",
+          "lastName",
+          "age"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "firstName": {
+            "maxLength": 30,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 30,
+            "type": "string"
+          },
+          "age": {
+            "maximum": 130,
+            "minimum": 0,
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "People"
+    }
+  ]
+}

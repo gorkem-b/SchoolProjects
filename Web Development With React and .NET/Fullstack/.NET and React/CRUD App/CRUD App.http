@@ -1,0 +1,37 @@
+@CRUD_App_HostAddress = http://localhost:5118
+
+### Create person
+POST {{CRUD_App_HostAddress}}/api/people
+Content-Type: application/json
+
+{
+  "firstName": "Gorkem",
+  "age": 21
+}
+
+###
+
+@personId = 1
+
+### Get person by id
+GET {{CRUD_App_HostAddress}}/api/people/{{personId}}
+Accept: application/json
+
+###
+
+### Update person
+PUT {{CRUD_App_HostAddress}}/api/people/{{personId}}
+Content-Type: application/json
+
+{
+  "id": {{personId}},
+  "firstName": "Gorkem Updated",
+  "age": 22
+}
+
+###
+
+### Delete person
+DELETE {{CRUD_App_HostAddress}}/api/people/{{personId}}
+
+###

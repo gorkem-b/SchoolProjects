@@ -1,0 +1,18 @@
+:root {
+	--color-bg: #f6f8fb;
+	--color-surface: #ffffff;
+	--color-text: #1a1b26;
+	--color-muted: #586076;
+	--color-border: #d7dce6;
+	--color-primary: #0f62fe;
+	--font-main: 'Segoe UI', sans-serif;
+}
+
+:root[data-theme='dark'] {
+	--color-bg: #10131a;
+	--color-surface: #151a23;
+	--color-text: #eceff7;
+	--color-muted: #b4bfd2;
+	--color-border: #2f3748;
+	--color-primary: #63a4ff;
+}

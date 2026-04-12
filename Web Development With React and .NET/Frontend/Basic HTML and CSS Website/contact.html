@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antalya Guide - Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Antalya: The Pearl of the Mediterranean</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="history.html">Historical Sites</a>
+        <a href="nature.html">Natural Beauty</a>
+        <a href="gastronomy.html">Gastronomy</a>
+        <a href="activities.html">Activities</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <main>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>You can use the map link below for suggestions and questions about Antalya.</p>
+            <p>
+                <a href="https://www.google.com/maps/d/u/0/edit?mid=1K088JOBisfsfElz9VxnPfP21LWYwnJk&usp=sharing" target="_blank" rel="noopener noreferrer">
+                    Open Google My Maps
+                </a>
+            </p>
+            <div class="map-embed">
+                <iframe src="https://www.google.com/maps/d/embed?mid=1K088JOBisfsfElz9VxnPfP21LWYwnJk&ehbc=2E312F" width="640" height="480"></iframe>
+            </div>
+
+            <h3>Send Us a Message</h3>
+            <table border="3">
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input type="text" id="name" name="name" placeholder="Your name"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="text" id="email" name="email" placeholder="Your email"></td>
+                </tr>
+                <tr>
+                    <td><label for="subject">Subject:</label></td>
+                    <td>
+                        <select id="subject" name="subject">
+                            <option value="general">General Inquiry</option>
+                            <option value="tourism">Tourism Information</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Preferred Contact:</label></td>
+                    <td>
+                        <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                        <label for="contact-email">Email</label>
+                        <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                        <label for="contact-phone">Phone</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Interests:</label></td>
+                    <td>
+                        <input type="checkbox" id="int-history" name="interests" value="history">
+                        <label for="int-history">History</label>
+                        <input type="checkbox" id="int-nature" name="interests" value="nature">
+                        <label for="int-nature">Nature</label>
+                        <input type="checkbox" id="int-food" name="interests" value="food">
+                        <label for="int-food">Food</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <button type="button" onclick="alert('Hi everyone from javascript')">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>This site was prepared by Görkem Bozkaya.</p>
+        <p>&copy; 2026 Antalya Guide.</p>
+    </footer>
+</body>
+</html>

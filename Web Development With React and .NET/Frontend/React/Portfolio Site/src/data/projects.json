@@ -1,0 +1,38 @@
+[
+	{
+		"slug": "project-alpha",
+		"title": "Project Alpha",
+		"description": "A responsive dashboard experience focused on performance and clean UX patterns.",
+		"tech": ["React", "TypeScript", "Tailwind"],
+		"repo": "https://github.com/example/project-alpha",
+		"demo": "https://example.com/project-alpha",
+		"year": 2026
+	},
+	{
+		"slug": "project-orbit",
+		"title": "Project Orbit",
+		"description": "A collaboration board with modular workflows and realtime task organization.",
+		"tech": ["React", "TypeScript", "Dnd"],
+		"repo": "https://github.com/example/project-orbit",
+		"demo": "https://example.com/project-orbit",
+		"year": 2025
+	},
+	{
+		"slug": "project-nova",
+		"title": "Project Nova",
+		"description": "An analytics interface for product metrics with customizable insight panels.",
+		"tech": ["React", "Charts", "REST API"],
+		"repo": "https://github.com/example/project-nova",
+		"demo": "https://example.com/project-nova",
+		"year": 2024
+	},
+	{
+		"slug": "project-lattice",
+		"title": "Project Lattice",
+		"description": "A modular design system playground for testing reusable UI components.",
+		"tech": ["React", "Storybook", "Design Tokens"],
+		"repo": "https://github.com/example/project-lattice",
+		"demo": "https://example.com/project-lattice",
+		"year": 2024
+	}
+]

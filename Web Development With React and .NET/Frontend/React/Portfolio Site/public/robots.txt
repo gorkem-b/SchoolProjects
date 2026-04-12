@@ -1,0 +1,18 @@
+# Allow all search engines to crawl and index the portfolio site
+User-agent: *
+Allow: /
+
+# Disallow access to sensitive directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /config/
+
+# Disallow crawling of common bot paths
+Disallow: /*.json$
+Disallow: /node_modules/
+
+# Set crawl delay to be respectful
+Crawl-delay: 1
+
+# Sitemap location (if you have one)
+# Sitemap: https://yourportfoliosite.com/sitemap.xml
