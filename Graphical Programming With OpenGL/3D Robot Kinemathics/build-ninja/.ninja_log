@@ -1,0 +1,20 @@
+# ninja log v7
+27	373	7978629124945530	CMakeFiles/RobotKinematics.dir/src/main.cpp.obj	1386dd5211956c08
+40	1156	7978629125048084	CMakeFiles/RobotKinematics.dir/src/Camera.cpp.obj	a57813d60c6a89e7
+48	1267	7978629125170253	CMakeFiles/RobotKinematics.dir/src/Robot.cpp.obj	5bcf384fe039f2b1
+33	1573	7978629125017460	CMakeFiles/RobotKinematics.dir/src/App.cpp.obj	9a12a7b9d7a4dd77
+54	1431	7978629125232613	CMakeFiles/RobotKinematics.dir/src/Input.cpp.obj	df6063d135491b99
+1573	1772	7978629140408163	RobotKinematics.exe	9ca95548e3434d3
+30	699	7978709349832346	CMakeFiles/RobotKinematics.dir/src/main.cpp.obj	718c7846f0176183
+47	1440	7978709349992359	CMakeFiles/RobotKinematics.dir/src/Camera.cpp.obj	813567f06d07ef2b
+57	1638	7978709350382379	CMakeFiles/RobotKinematics.dir/src/Robot.cpp.obj	9a8d24da545fff8a
+100	1726	7978709351222186	CMakeFiles/RobotKinematics.dir/src/Input.cpp.obj	4f004820fe862ca8
+39	2036	7978709349912357	CMakeFiles/RobotKinematics.dir/src/App.cpp.obj	b17325b1e6e9720f
+2037	2249	7978709369887740	RobotKinematics.exe	4860d447716c9f69
+2	32	7978712211843530	clean	7cad43144eea5c8
+19	367	7978712212494286	CMakeFiles/RobotKinematics.dir/src/main.cpp.obj	718c7846f0176183
+32	1209	7978712212633770	CMakeFiles/RobotKinematics.dir/src/Camera.cpp.obj	813567f06d07ef2b
+38	1401	7978712212693945	CMakeFiles/RobotKinematics.dir/src/Robot.cpp.obj	9a8d24da545fff8a
+44	1458	7978712212753903	CMakeFiles/RobotKinematics.dir/src/Input.cpp.obj	4f004820fe862ca8
+26	1782	7978712212569534	CMakeFiles/RobotKinematics.dir/src/App.cpp.obj	b17325b1e6e9720f
+1783	1965	7978712230138366	RobotKinematics.exe	4860d447716c9f69

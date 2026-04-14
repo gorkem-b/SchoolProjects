@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -I\"C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src\" -g -std=c++11 -o CMakeFiles\\RobotKinematics.dir\\src\\main.cpp.obj -c \"C:\\Users\\Görkem\\Downloads\\SchoolProjects\\Graphical Programming With OpenGL\\3D Robot Kinemathics\\src\\main.cpp\"",
+  "file": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src/main.cpp",
+  "output": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja/CMakeFiles/RobotKinematics.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -I\"C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src\" -g -std=c++11 -o CMakeFiles\\RobotKinematics.dir\\src\\App.cpp.obj -c \"C:\\Users\\Görkem\\Downloads\\SchoolProjects\\Graphical Programming With OpenGL\\3D Robot Kinemathics\\src\\App.cpp\"",
+  "file": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src/App.cpp",
+  "output": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja/CMakeFiles/RobotKinematics.dir/src/App.cpp.obj"
+},
+{
+  "directory": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -I\"C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src\" -g -std=c++11 -o CMakeFiles\\RobotKinematics.dir\\src\\Camera.cpp.obj -c \"C:\\Users\\Görkem\\Downloads\\SchoolProjects\\Graphical Programming With OpenGL\\3D Robot Kinemathics\\src\\Camera.cpp\"",
+  "file": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src/Camera.cpp",
+  "output": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja/CMakeFiles/RobotKinematics.dir/src/Camera.cpp.obj"
+},
+{
+  "directory": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -I\"C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src\" -g -std=c++11 -o CMakeFiles\\RobotKinematics.dir\\src\\Robot.cpp.obj -c \"C:\\Users\\Görkem\\Downloads\\SchoolProjects\\Graphical Programming With OpenGL\\3D Robot Kinemathics\\src\\Robot.cpp\"",
+  "file": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src/Robot.cpp",
+  "output": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja/CMakeFiles/RobotKinematics.dir/src/Robot.cpp.obj"
+},
+{
+  "directory": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -I\"C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src\" -g -std=c++11 -o CMakeFiles\\RobotKinematics.dir\\src\\Input.cpp.obj -c \"C:\\Users\\Görkem\\Downloads\\SchoolProjects\\Graphical Programming With OpenGL\\3D Robot Kinemathics\\src\\Input.cpp\"",
+  "file": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/src/Input.cpp",
+  "output": "C:/Users/Görkem/Downloads/SchoolProjects/Graphical Programming With OpenGL/3D Robot Kinemathics/build-ninja/CMakeFiles/RobotKinematics.dir/src/Input.cpp.obj"
+}
+]

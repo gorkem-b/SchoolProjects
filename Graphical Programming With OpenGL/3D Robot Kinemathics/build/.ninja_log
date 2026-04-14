@@ -1,0 +1,9 @@
+# ninja log v7
+36	211	7978580527208559	CMakeFiles/RobotKinematics.dir/src/main.cpp.obj	9727bd83fab0f0f6
+56	2750	7978580527412380	CMakeFiles/RobotKinematics.dir/src/Robot.cpp.obj	8499202b5bd495ea
+50	2793	7978580527311245	CMakeFiles/RobotKinematics.dir/src/Camera.cpp.obj	b6ec30564663e2ed
+63	3411	7978580527478305	CMakeFiles/RobotKinematics.dir/src/Input.cpp.obj	68ec55db35997b9c
+43	3431	7978580527282073	CMakeFiles/RobotKinematics.dir/src/App.cpp.obj	a2bbd6ab005b4786
+3431	3728	7978580561157697	RobotKinematics.exe	9f18642444574e9b
+50	1470	7978583142493958	CMakeFiles/RobotKinematics.dir/src/Input.cpp.obj	68ec55db35997b9c
+1472	1698	7978583156719077	RobotKinematics.exe	9f18642444574e9b
