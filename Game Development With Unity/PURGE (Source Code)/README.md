@@ -1,6 +1,7 @@
 # PURGE
 
-PURGE is a single-player first-person action game developed in Unity.
+PURGE is a single-player first-person action game developed in Unity. 
+Download here: https://drive.google.com/drive/folders/1hxANJ2rkumRXlsp6jMPS3qyagQrvJBvX?usp=sharing
 
 ## Overview
 The player progresses through a series of combat-focused scenes, completes objectives, fights enemy units, and reaches a final boss encounter in the Reactor Cavern.
