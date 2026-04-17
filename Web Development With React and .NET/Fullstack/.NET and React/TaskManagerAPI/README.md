@@ -1,171 +1,303 @@
-### Proje İşleyişi
+# Task Manager API & UI
 
-Kullanıcı React tabanlı arayüze erişerek kayıt olur veya mevcut bilgileriyle giriş yapar. Giriş başarılı olduğunda arka uç (.NET API), kullanıcıya özgü şifrelenmiş bir JSON Web Token (JWT) üretir ve arayüze döndürür. React uygulaması bu token'ı tarayıcı belleğinde (localStorage veya sessionStorage) saklar. Kullanıcı yeni bir görev ekleme, silme, güncelleme veya görevlerini filtreleyerek listeleme talebinde bulunduğunda, React uygulaması bu JWT'yi HTTP isteklerinin `Authorization` başlığına (Bearer token olarak) ekleyerek API'ye iletir. API, gelen istekteki token'ın geçerliliğini ve kullanıcının kimliğini doğrular. Doğrulama başarılıysa, MSSQL veritabanında kullanıcının yalnızca kendi verileri üzerinde ilgili CRUD (Oluşturma, Okuma, Güncelleme, Silme) işlemini gerçekleştirir. İşlem sonucu, JSON veri formatında ve ilgili HTTP durum kodlarıyla (örn. 200 OK, 201 Created) arayüze geri döndürülür ve arayüzdeki durum (state) güncellenerek ekrana yansıtılır.
+## Overview
 
----
+This project is a full-stack task management application built with a React frontend and an ASP.NET Core Web API backend. It supports user registration and login with JWT-based authentication, then allows each authenticated user to create, view, update, delete, and filter only their own tasks.
 
-### Tech-Stack
-
-* **Frontend:** React (UI kütüphanesi), Axios veya Fetch API (HTTP istemcisi), React Router DOM (Sayfa yönlendirmeleri).
-* **Backend:** C# ASP.NET Web API (RESTful mimari).
-* **Database:** MSSQL (İlişkisel veritabanı).
-* **ORM (Object-Relational Mapping):** Entity Framework (C# nesneleri ile MSSQL tabloları arasındaki eşleme).
-* **Security/Authentication:** JWT (JSON Web Token).
+The current implementation is designed to run locally with Docker Compose. The stack includes a React UI, a .NET 10 API, and a SQL Server container. Database migrations are automatically applied when the API starts inside Docker.
 
 ---
 
-### Sistem Tasarımı ve Mimari
+## Current Features
 
-Uygulama, birbirinden bağımsız çalışan İstemci-Sunucu (Client-Server) mimarisi üzerine kuruludur. Frontend (React) ve Backend (.NET) farklı sunucularda barındırılabilir, birbirleriyle sadece HTTP protokolü ve JSON verisi üzerinden haberleşirler.
+### Authentication
+- User registration
+- User login
+- JWT token generation
+- Protected API endpoints
+- Token persistence in the frontend
 
-Backend, **N-Katmanlı (N-Tier) Mimari** prensiplerine göre inşa edilir. Bu, kodun sorumluluklara göre ayrılmasını sağlar:
-1.  **Sunum Katmanı (Controllers):** Sadece gelen HTTP isteklerini karşılar, verinin formatını doğrular ve iş katmanına iletir. Veritabanı sorgusu içermez.
-2.  **İş Katmanı (Services):** Uygulamanın mantığının çalıştığı yerdir. Şifre hashleme, token üretme, bir görevin sadece o görevi oluşturan kullanıcı tarafından silinebilmesi gibi kurallar burada işletilir.
-3.  **Veri Erişim Katmanı (Data Access / Repository):** Sadece veritabanı (MSSQL) ile konuşur. EF Core kullanılarak sorgular atılır ve sonuçlar nesne (Object) olarak iş katmanına döndürülür.
+### Task Management
+- Create tasks
+- List tasks
+- Update tasks
+- Delete tasks
+- Filter tasks by status
+- Filter tasks by category
+- User-specific task isolation
 
----
+### UX Improvements
+- Inline error feedback on auth screens
+- Form inputs stay intact after failed requests
+- Edit mode with cancel action
+- Success messages with auto-dismiss behavior
+- Delete confirmation before removing a task
+- Empty-state and filtered-empty-state handling
 
-### Akış Diyagramı (Görselleştirme)
-
-```text
-[KULLANICI] 
-    │
-    ▼ (Arayüz Etkileşimi)
-[REACT UI]
-    │
-    ├─► 1. POST /api/auth/login (Kullanıcı adı ve şifre gönderilir)
-    │
-    ▼
-[.NET API CONTROLLER] ──► Doğrulama (Validation)
-    │
-    ▼
-[AUTH SERVICE] ──► Şifre kontrolü ve UserID tespiti
-    │
-    ▼
-[MSSQL DATABASE] ──► Kullanıcı kaydını sorgular ve onaylar
-    │
-    ▼
-[AUTH SERVICE] ──► UserID içeren bir JWT oluşturur
-    │
-    ▼
-[.NET API CONTROLLER] ──► HTTP 200 OK ve JWT döndürür
-    │
-    ▼
-[REACT UI] ──► JWT'yi LocalStorage'a kaydeder.
-    │
-    ├─► 2. GET /api/tasks (Header: "Authorization: Bearer <JWT>")
-    │
-    ▼
-[.NET API CONTROLLER] ──► Token'ı çözer, UserID'yi çıkarır, Yetkilendirmeyi (Auth) onaylar
-    │
-    ▼
-[TASK SERVICE] ──► İlgili UserID'ye ait görevleri getir kuralını uygular
-    │
-    ▼
-[MSSQL DATABASE] ──► "SELECT * FROM Tasks WHERE UserId = @UserId" çalıştırır
-    │
-    ▼
-[TASK SERVICE] ──► Veritabanı modellerini DTO (Data Transfer Object) formatına çevirir
-    │
-    ▼
-[.NET API CONTROLLER] ──► HTTP 200 OK ve JSON formatında görev listesini döndürür
-    │
-    ▼
-[REACT UI] ──► State güncellenir ve görevler ekranda listelenir
-```
+### Infrastructure
+- SQL Server running in Docker
+- ASP.NET Core API running in Docker
+- React UI served through Nginx in Docker
+- EF Core migrations applied automatically on startup
 
 ---
 
-### Klasör Yapısı Ağacı (Tree) ve Sorumluluklar
+## Tech Stack
 
-#### 1. Backend (.NET API) Klasör Yapısı
+- **Frontend:** React, React Router DOM, Axios, Vite
+- **Backend:** ASP.NET Core Web API (.NET 10)
+- **Database:** Microsoft SQL Server
+- **ORM:** Entity Framework Core
+- **Authentication:** JWT (JSON Web Token)
+- **Containerization:** Docker, Docker Compose
+
+---
+
+## Architecture
+
+The application follows a client-server architecture:
+
+- The **React frontend** handles routing, authentication state, forms, and task management screens.
+- The **.NET API** handles authentication, authorization, task business logic, and database access.
+- **SQL Server** stores users and tasks.
+
+The backend is organized into clear layers:
+
+1. **Controllers**
+   - Receive HTTP requests
+   - Validate request payloads
+   - Return HTTP responses
+
+2. **Services**
+   - Handle business rules
+   - Create JWT tokens
+   - Hash and verify passwords
+   - Enforce user-specific task access
+
+3. **Data Layer**
+   - Uses Entity Framework Core through `AppDbContext`
+   - Maps entities to the database
+   - Applies migrations
+
+---
+
+## Application Flow
+
+### Authentication Flow
+
+1. A user registers or logs in from the React UI.
+2. The frontend sends credentials to the API.
+3. The API validates the user.
+4. On successful login, the API returns a JWT.
+5. The frontend stores the token and includes it in future requests.
+
+### Task Flow
+
+1. The frontend sends authenticated requests with `Authorization: Bearer <token>`.
+2. The API validates the token and extracts the user identity.
+3. The API only returns or modifies tasks that belong to that user.
+4. The frontend updates local state and reflects changes in the UI.
+
+---
+
+## Project Structure
+
+### Backend
 
 ```text
 TaskApi/
 ├── Controllers/
-│   ├── AuthController.cs     # Login ve Register HTTP endpointlerini (POST) içerir.
-│   └── TaskController.cs     # Task CRUD (GET, POST, PUT, DELETE) endpointlerini içerir.
-├── Models/                   # Veritabanı tablolarının birebir C# sınıfı karşılıkları (Entities).
-│   ├── User.cs               # Id, Username, PasswordHash alanları.
-│   └── TaskItem.cs           # Id, Title, Description, Category, Status, UserId alanları.
-├── DTOs/                     # İstemciye giden ve gelen veri şablonları. Güvenlik ve gereksiz veri transferini önler.
-│   ├── UserAuthDto.cs        # Sadece Username ve Password taşır.
-│   └── TaskResponseDto.cs    # Görev detaylarını taşır, ancak User tablosuna ait ilişkisel gizli verileri içermez.
-├── Services/                 # İş kurallarının barındığı servis sınıfları.
-│   ├── AuthService.cs        # JWT üretimi ve şifre doğrulama (BCrypt/Argon2) işlemleri.
-│   └── TaskService.cs        # Task verilerini filtreleme, ekleme sırasında UserId atama işlemleri.
+│   ├── AuthController.cs
+│   └── TaskController.cs
 ├── Data/
-│   └── AppDbContext.cs       # Entity Framework'ün veritabanı bağlantı konfigürasyonu ve tablo setleri (DbSet).
-├── Migrations/               # Veritabanı şemasında yapılan değişikliklerin otomatik oluşturulan tarihçesi.
-├── appsettings.json          # Veritabanı Connection String'i ve JWT Secret Key'inin tutulduğu konfigürasyon dosyası.
-└── Program.cs                # Uygulamanın başlangıç noktası. Bağımlılık enjeksiyonları (DI), CORS ayarları ve Middleware (JWT doğrulama) eklemeleri yapılır.
+│   └── AppDbContext.cs
+├── DTOs/
+│   ├── UserAuthDto.cs
+│   ├── TaskCreateUpdateDto.cs
+│   └── TaskResponseDto.cs
+├── Migrations/
+├── Models/
+│   ├── User.cs
+│   └── TaskItem.cs
+├── Services/
+│   ├── AuthService.cs
+│   └── TaskService.cs
+├── appsettings.json
+├── Dockerfile
+└── Program.cs
 ```
 
-#### 2. Frontend (React) Klasör Yapısı
+### Frontend
 
 ```text
 task-ui/
-├── public/
-│   └── index.html            # React uygulamasının gömüldüğü ana HTML dosyası.
 ├── src/
 │   ├── api/
-│   │   ├── axiosConfig.js    # Base URL tanımı ve her giden isteğe JWT ekleyen Axios Interceptor yapısı.
-│   │   └── taskServices.js   # API'ye yapılan /tasks endpoint isteklerini (fetch/axios) soyutlayan fonksiyonlar.
-│   ├── components/           # Sayfalarda tekrar tekrar kullanılan küçük yapı taşları.
-│   │   ├── Navbar.jsx        # Üst menü, çıkış yap butonu.
-│   │   ├── TaskItem.jsx      # Tek bir görevin görüntülendiği kart bileşeni.
-│   │   └── TaskForm.jsx      # Yeni görev ekleme veya düzenleme formu.
-│   ├── pages/                # Tarayıcı url'sine (Route) bağlı olarak render edilen ana ekranlar.
-│   │   ├── Login.jsx         # Kullanıcı giriş ekranı.
-│   │   ├── Register.jsx      # Yeni kullanıcı kayıt ekranı.
-│   │   └── Dashboard.jsx     # Görevlerin listelendiği, filtrelendiği ve yönetildiği ana panel.
+│   │   ├── authService.js
+│   │   ├── axiosConfig.js
+│   │   └── taskService.js
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── ProtectedRoute.jsx
+│   │   ├── TaskForm.jsx
+│   │   └── TaskItem.jsx
 │   ├── context/
-│   │   └── AuthContext.jsx   # Kullanıcının giriş yapıp yapmadığı bilgisini (Token ve User bilgisi) tüm uygulamaya global olarak dağıtan React Context yapısı.
-│   ├── App.jsx               # React Router yönlendirmelerinin (Route kuralları ve Protected Routes) tanımlandığı kök bileşen.
-│   └── index.js              # Uygulamayı DOM'a bağlayan başlangıç dosyası.
-├── .env                      # API Base URL'i gibi ortama bağlı (geliştirme/canlı) değişkenlerin tutulduğu dosya.
-└── package.json              # Projenin NPM bağımlılıkları (react, axios, react-router-dom vs.).
+│   │   └── AuthContext.jsx
+│   ├── pages/
+│   │   ├── Dashboard.jsx
+│   │   ├── Login.jsx
+│   │   └── Register.jsx
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .env
+├── Dockerfile
+├── index.html
+├── nginx.conf
+└── package.json
 ```
 
 ---
 
-### Doğrusal Geliştirme İşleyişi (Adım Adım Yol Haritası)
+## Authentication Details
 
-1.  **Altyapı ve Veritabanı Kurulumu (Backend)**
-    * .NET Web API projesi oluşturulur.
-    * Entity Framework paketleri projeye dahil edilir.
-    * `Models` klasöründe `User` ve `TaskItem` sınıfları oluşturulur. `TaskItem` içerisine `UserId` eklenerek yabancı anahtar (Foreign Key) ilişkisi kurulur.
-    * `AppDbContext` yapılandırılır, `appsettings.json` içerisine MSSQL connection string yazılır.
-    * Migration oluşturulup (`Add-Migration Initial`) veritabanına uygulanır (`Update-Database`).
+- Passwords are hashed in the backend before they are stored.
+- JWT tokens include the authenticated user's identity.
+- Protected task endpoints require a valid token.
+- The frontend stores the token in `localStorage`.
+- Axios automatically attaches the token to outgoing API requests.
 
-2.  **Kimlik Doğrulama ve Güvenlik (Backend)**
-    * `AuthService` geliştirilir. Kullanıcı kayıt olurken şifresi hashlenerek veritabanına kaydedilir.
-    * JWT algoritması entegre edilir. Başarılı girişte Token üretecek metot yazılır.
-    * `Program.cs` içerisine JWT Authentication middleware'i eklenir (API'nin token kabul etmesi sağlanır).
-    * `AuthController` yazılır ve Postman/Swagger üzerinden yetkilendirme akışı test edilir.
+---
 
-3.  **İş Mantığı ve CRUD Operasyonları (Backend)**
-    * `TaskService` ve DTO nesneleri oluşturulur.
-    * `TaskController` oluşturulur. Sınıfın başına `[Authorize]` özniteliği (attribute) eklenerek uç noktalar koruma altına alınır.
-    * Controller içindeki metotlarda, HTTP isteğini yapan kullanıcının kimliği (`User.Identity`) JWT'den okunur. Görev eklenirken bu kimlik göreve atanır; okuma, güncelleme ve silme işlemlerinde görevin sadece bu kimliğe ait olup olmadığı denetlenir.
-    * Tüm CRUD operasyonları Postman üzerinden "Bearer Token" eklenerek test edilir. Cors ayarları yapılandırılarak React'in API'ye erişimine izin verilir.
+## Task Management Details
 
-4.  **Arayüz İskeleti ve Route Kurulumu (Frontend)**
-    * React projesi başlatılır (`npm create vite@latest` veya `npx create-react-app`).
-    * Gerekli paketler (`axios`, `react-router-dom`) kurulur.
-    * `Pages` (Login, Register, Dashboard) oluşturulur. `App.jsx` içerisinde sayfa geçiş (Routing) mimarisi kurulur.
+Each authenticated user can:
 
-5.  **Global Durum Yönetimi ve API Entegrasyonu (Frontend)**
-    * `AuthContext.jsx` oluşturulur. Token'ın localStorage'a yazılması, okunması ve bellekten silinmesi (Logout) işlevleri buraya bağlanır.
-    * Yalnızca giriş yapmış kullanıcıların görebileceği "Protected Route" bileşeni oluşturulur ve Dashboard sayfası bu rota ile sarılır.
-    * `axiosConfig.js` oluşturulup bir "Interceptor" yazılır. Bu sayede her Axios isteğinin Header'ına localStorage'daki JWT otomatik olarak eklenir.
+- create a task
+- view their own tasks
+- update their own tasks
+- delete their own tasks
+- filter tasks by status and category
 
-6.  **UI Bileşenlerinin Kodlanması ve Bağlanması (Frontend)**
-    * Auth formları (Login/Register) bağlanır.
-    * Dashboard sayfasında durumlar (tasks, statusFilter, categoryFilter) `useState` ile tanımlanır.
-    * Sayfa yüklendiğinde (`useEffect` ile) API'den görevler çekilir ve ekrana basılır.
-    * Görevin tamamlandı olarak işaretlenmesi (Update) veya silinmesi (Delete) eylemleri, oluşturulan görev kartlarındaki butonlara bağlanarak ilgili API istekleri tetikletilir. İşlem sonrası lokal State güncellenerek sayfanın yenilenmesine gerek kalmadan UI değiştirilir.
+Tasks include:
 
-7.  **Dağıtım (Deployment)**
-    * Backend, `Release` modunda derlenir ve IIS sunucusuna, Azure App Service'e veya AWS EC2 gibi bir platforma yüklenir. MSSQL veritabanı uzak sunucuya taşınır ve Connection String güncellenir.
-    * Frontend, `.env` dosyasındaki API URL canlı sunucu adresine göre güncellendikten sonra build (`npm run build`) edilir. Ortaya çıkan statik dosyalar Vercel, Netlify veya AWS S3/Cloudfront gibi servisler üzerinden yayına alınır.
+- `title`
+- `description`
+- `category`
+- `status`
+- `userId`
+
+---
+
+## Docker-Based Local Setup
+
+The project is configured to run with Docker Compose.
+
+### Services
+
+- **sqlserver** → SQL Server database
+- **taskapi** → ASP.NET Core Web API
+- **taskui** → React frontend served through Nginx
+
+### Important Ports
+
+- **UI:** `http://localhost:4173`
+- **API:** `http://localhost:8080/api`
+- **SQL Server:** `localhost:1433`
+
+### Start the Project
+
+1. Create a local environment file from the example:
+
+```bash
+copy .env.example .env
+```
+
+2. Update the values inside `.env` with your own local secrets.
+
+3. Start the stack:
+
+```bash
+docker compose up --build -d
+```
+
+### Stop the Project
+
+```bash
+docker compose down
+```
+
+---
+
+## Running Without Docker
+
+### Backend
+
+```bash
+dotnet run --project .\TaskApi\TaskApi.csproj
+```
+
+### Frontend
+
+```bash
+npm install --prefix .\task-ui
+npm run dev --prefix .\task-ui
+```
+
+> Note: the current default configuration is optimized for Docker-based local development.
+> Do not commit real secrets to source control. Use `.env` for local values.
+
+---
+
+## Build Commands
+
+### Backend
+
+```bash
+dotnet build .\TaskApi\TaskApi.csproj
+```
+
+### Frontend
+
+```bash
+npm run build --prefix .\task-ui
+```
+
+---
+
+## API Summary
+
+### Auth Endpoints
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+
+### Task Endpoints
+
+- `GET /api/tasks`
+- `POST /api/tasks`
+- `PUT /api/tasks/{id}`
+- `DELETE /api/tasks/{id}`
+
+All task endpoints require a valid JWT token.
+
+---
+
+## Current Status
+
+The main scope of the project is implemented and working:
+
+- authentication works
+- task CRUD works
+- filtering works
+- frontend and backend builds succeed
+- Docker Compose setup works
+- SQL Server migrations run automatically in Docker
+- the API flow has been tested end-to-end
+
+Possible future improvements:
+
+- further UI polish
+- stronger validation rules
+- automated tests
+- README examples with sample request payloads
