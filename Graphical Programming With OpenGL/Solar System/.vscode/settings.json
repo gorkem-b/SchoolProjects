@@ -1,0 +1,11 @@
+{
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+  "C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/c++.exe",
+  "C_Cpp.default.intelliSenseMode": "windows-gcc-x64",
+  "C_Cpp.default.cStandard": "c17",
+  "C_Cpp.default.cppStandard": "c++17",
+  "python.defaultInterpreterPath": "C:/Users/Görkem/AppData/Local/Python/pythoncore-3.14-64/python.exe",
+  "python.analysis.extraPaths": [
+    "C:/Users/Görkem/AppData/Local/Python/pythoncore-3.14-64/Lib/site-packages"
+  ]
+}

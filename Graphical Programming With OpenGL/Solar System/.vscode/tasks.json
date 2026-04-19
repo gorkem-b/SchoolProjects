@@ -1,0 +1,55 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "CMake: Configure",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build",
+                "-G",
+                "Ninja"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "CMake: Build SolarSystemGL",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": "CMake: Configure",
+            "detail": "Build the full SolarSystemGL project with CMake."
+        },
+        {
+            "type": "shell",
+            "label": "Run: SolarSystemGL",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "Start-Process -FilePath '${workspaceFolder}/build/SolarSystemGL.exe' -WorkingDirectory '${workspaceFolder}/build'"
+            ],
+            "dependsOn": "CMake: Build SolarSystemGL",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never",
+                "panel": "dedicated",
+                "focus": false,
+                "close": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
