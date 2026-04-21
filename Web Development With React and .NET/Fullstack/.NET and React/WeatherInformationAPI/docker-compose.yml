@@ -1,0 +1,49 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: weather-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-YourStrong!Passw0rd}
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - weather-network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: weather-backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Server=sqlserver,1433;Database=WeatherTasksDb;User Id=sa;Password=${MSSQL_SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=True;Encrypt=False
+      Cors__AllowedOrigins__0: http://localhost:3000
+      Cors__AllowedOrigins__1: http://localhost:5173
+    depends_on:
+      - sqlserver
+    ports:
+      - "8080:8080"
+    networks:
+      - weather-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: weather-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - weather-network
+
+volumes:
+  sqlserver-data:
+
+networks:
+  weather-network:
+
+

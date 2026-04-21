@@ -1,0 +1,1 @@
+"""Server package for the custom FTP application."""
