@@ -1,0 +1,11 @@
+@BookLibrary.API_HostAddress = http://localhost:5046
+
+GET {{BookLibrary.API_HostAddress}}/api/books
+Accept: application/json
+
+###
+
+GET {{BookLibrary.API_HostAddress}}/api/tasks
+Accept: application/json
+
+###

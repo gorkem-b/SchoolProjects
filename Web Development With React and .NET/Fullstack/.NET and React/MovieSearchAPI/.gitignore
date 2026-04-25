@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+**/appsettings.Development.json
+
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+
+.vs/
+.vscode/
+*.user
+*.suo

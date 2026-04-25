@@ -1,0 +1,34 @@
+# Build outputs
+bin/
+obj/
+dist/
+dist-ssr/
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local environment files
+*.local
+.env
+.env.*
+!.env.example
+
+# IDE and OS files
+.vs/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# User-specific .NET files
+*.user
+*.suo
+*.rsuser
