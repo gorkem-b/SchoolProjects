@@ -1,0 +1,43 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: event-reminder-mssql
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:-Your_password123!}"
+      MSSQL_PID: "${MSSQL_PID:-Developer}"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+  backend:
+    build:
+      context: .
+      dockerfile: Backend/EventReminder.API/Dockerfile
+    container_name: event-reminder-api
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=${MSSQL_DATABASE:-EventReminderDb};User Id=sa;Password=${MSSQL_SA_PASSWORD:-Your_password123!};TrustServerCertificate=True;Encrypt=False"
+    ports:
+      - "5000:8080"
+    depends_on:
+      - mssql
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend/Dockerfile
+      args:
+        VITE_API_BASE_URL: "${VITE_API_BASE_URL:-http://localhost:5000/api}"
+    container_name: event-reminder-ui
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mssql_data:
